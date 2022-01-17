@@ -1,27 +1,30 @@
 import React from 'react'
 import ExpenseItem from './ExpenseItem'
 import './Expenses.css'
+import Card from '../UI/Card'
+
+
 function Expenses(props) {
 	// -------------------------------------------------------------------
 	//  СПОСОБ С МАР
 
-	
-	const arr = props.data
-        return (
-            <div>
-                {arr.map((el) => {
-                    return (
-                        <ExpenseItem
-                            key={el.id}
-                            title={el.title}
-                            amount={el.amount}
-                            date={el.date}
-                        />
-                    )
-                })}
-            </div>
-        )
-    } 
+	return (
+		<>
+		{props.data.map((el, id) => {
+			return (
+				<Card className='expenses'>
+					<ExpenseItem
+					title={el.title}
+					amount={el.amount}
+					date={el.date}
+					key={id}
+					/>
+				</Card>
+			)
+		})}
+		</>
+	)
+}
 
 	// ---------------------------------------------------------
 

@@ -1,6 +1,6 @@
 
 import './App.css';
-import Expenses from './components/Expenses'
+import Expenses from './components/Expenses/Expenses'
 
 function helloHandler(){
 	for(let i = 0; i <=3; i++){
