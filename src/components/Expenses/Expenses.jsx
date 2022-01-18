@@ -3,32 +3,31 @@ import ExpenseItem from './ExpenseItem'
 import './Expenses.css'
 import Card from '../UI/Card'
 
-
 function Expenses(props) {
 	// -------------------------------------------------------------------
 	//  СПОСОБ С МАР
 
 	return (
 		<>
-		{props.data.map((el, id) => {
-			return (
-				<Card className='expenses'>
-					<ExpenseItem
-					title={el.title}
-					amount={el.amount}
-					date={el.date}
-					key={id}
-					/>
-				</Card>
-			)
-		})}
+			<Card className='expenses'>
+				{props.data.map((el) => {
+					return (
+						<ExpenseItem
+							title={el.title}
+							amount={el.amount}
+							date={el.date}
+							key={Math.random()}
+						/>
+					)
+				})}
+			</Card>
 		</>
 	)
 }
 
-	// ---------------------------------------------------------
+// ---------------------------------------------------------
 
-	// ПЕРВЫЙ СПОСОБ
+// ПЕРВЫЙ СПОСОБ
 /* 
 	return (
 		<div className='expenses'>

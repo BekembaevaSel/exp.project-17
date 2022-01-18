@@ -1,12 +1,8 @@
 
 import './App.css';
 import Expenses from './components/Expenses/Expenses'
+import NewExpenses from './components/NewExpenses/NewExpenses';
 
-function helloHandler(){
-	for(let i = 0; i <=3; i++){
-		alert('hello')
-	}
-}
 
 function App() {
   const expenses = [
@@ -37,8 +33,10 @@ function App() {
 	]
   return (
     <div className="App">
+		 <NewExpenses />
       <Expenses data={expenses}/>
-	  <button onClick={helloHandler}>click</button>
+	 
+	 
     </div>
   );
 }
