@@ -1,41 +1,62 @@
 import './ExpenseForm.css'
 import { useState } from 'react'
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 	const [title, setTitle] = useState('')
 	const [amount, setAmount] = useState('')
 	const [date, setDate] = useState('')
 
-	const titleChangeHandler = (event) => {
-		setTitle(event.target.value)
+	const inputChangeHandler = (event) => {
+		const currentInput = event.target.name
+		if (currentInput === 'title') {
+			setTitle(event.target.value)
+		} else if (currentInput === 'amount') {
+			setAmount(event.target.value)
+		} else if (currentInput === 'date') {
+			setDate(event.target.value)
+		}
 	}
-    const amountChangeHandler = (event) => {
-        setAmount(event.target.value)
-    }
-    const dateChangeHandler = (event) => {
-        setDate(event.target.value)
-    }
 
-    const submitHandler = (event) => {
-        console.log(title);
-        console.log(amount);
-        console.log(date);
-    }
+	const submitHandler = (event) => {
+		event.preventDefault()
+		const currentData = {
+			title,
+			amount: Number(amount),
+			date: new Date(date),
+		}
+		props.onSaveExpenseData(currentData)
+	}
 
 	return (
 		<form onSubmit={submitHandler}>
 			<div className='new-expense__controls'>
 				<div className='new-expense__control'>
 					<label>Title</label>
-					<input type='text' onChange={titleChangeHandler} />
+					<input
+						name='title'
+						type='text'
+						onChange={inputChangeHandler}
+						value={title}
+					/>
 				</div>
 				<div className='new-expense__control'>
 					<label>Amount</label>
-					<input type='number' min='0.1' step='1' onChange={amountChangeHandler}/>
+					<input
+						name='amount'
+						type='number'
+						onChange={inputChangeHandler}
+						value={amount}
+					/>
 				</div>
 				<div className='new-expense__control'>
 					<label>Date</label>
-					<input type='date' min='2022-01-01' onChange={dateChangeHandler} />
+					<input
+						name='date'
+						type='date'
+						min='2022-01-01'
+						onChange={inputChangeHandler}
+						value={date}
+					/>
 				</div>
 			</div>
 			<div className='new-expense__actions'>
@@ -46,3 +67,77 @@ const ExpenseForm = () => {
 }
 
 export default ExpenseForm
+
+// ------------------------------------------------
+// LAST VERSION
+
+// const inputChangeHandler = (event) => {
+// 	const currentInput = event.target.name
+// 	setUserInput({
+// 		...userInput,
+// 		[currentInput] : event.target.value
+// 	});
+// }
+
+// ------------------------------------------------
+// VERSION WITH OBJECT
+
+// const titleChangeHandler = (event) => {
+// 	setUserInput({
+// 		title: event.target.value
+// 	});
+// }
+// const amountChangeHandler = (event) => {
+// 	setUserInput({
+// 		...userInput,
+// 		amount: event.target.value
+// 	})
+// }
+// const dateChangeHandler = (event) => {
+// 	setUserInput({
+// 		...userInput,
+// 		date: event.target.value
+// 	})
+// }
+
+// -----------prev state -----------------------------
+// const titleChangeHandler = (event) => {
+// 	setUserInput((prevState) => {
+// 		return {
+// 			...prevState,
+// 			title: event.target.value,
+// 		}
+// 	})
+// }
+
+// const amountChangeHandler = (event) => {
+// 	setUserInput((prevState) => {
+// 		return {
+// 			...prevState,
+// 			amount: event.target.value,
+// 		}
+// 	})
+// }
+
+// const dateChangeHandler = (event) => {
+// 	setUserInput((prevState) => {
+// 		return {
+// 			...prevState,
+// 			date: event.target.value,
+// 		}
+// 	})
+// }
+
+// ----------------------------------------------------
+
+// const titleChangeHandler = (event) => {
+// 	setTitle(event.target.value)
+// }
+// const amountChangeHandler = (event) => {
+//     setAmount(event.target.value)
+// }
+// const dateChangeHandler = (event) => {
+//     setDate(event.target.value)
+// }
+
+// -------------------------------------------------------
