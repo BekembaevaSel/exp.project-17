@@ -34,4 +34,4 @@ const ExpensesList = (props) => {
 
 	return <ul className='expenses-list'>{ExpenseContent}</ul>
 }
-export default ExpensesList
+export default ExpensesList;
